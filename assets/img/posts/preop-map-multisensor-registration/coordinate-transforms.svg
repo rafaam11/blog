@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 220" role="img" aria-labelledby="coord-title">
+  <title id="coord-title">수술 내비게이션에서 쓰이는 주요 좌표계와 강체 변환 관계</title>
+  <rect x="8" y="8" width="744" height="204" rx="8" fill="#f6f7f8" stroke="#c9cdd3"/>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#3d4550"/>
+    </marker>
+    <style>
+      .box { fill: #ffffff; stroke: #5c6773; stroke-width: 1.5; }
+      .label { font-family: system-ui, "Noto Sans KR", sans-serif; font-size: 14px; fill: #1a1d21; text-anchor: middle; }
+      .sub { font-size: 12px; fill: #4a5560; }
+      .tx { font-family: ui-monospace, "Noto Sans Mono", monospace; font-size: 12px; fill: #2b3a4a; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <rect class="box" x="24" y="72" width="150" height="76" rx="6"/>
+  <text class="label" x="99" y="102">수술 전 영상</text>
+  <text class="label sub" x="99" y="122">(CT) 좌표계</text>
+
+  <rect class="box" x="214" y="72" width="150" height="76" rx="6"/>
+  <text class="label" x="289" y="102">환자</text>
+  <text class="label sub" x="289" y="122">(해부) 좌표계</text>
+
+  <rect class="box" x="404" y="72" width="150" height="76" rx="6"/>
+  <text class="label" x="479" y="102">추적기</text>
+  <text class="label sub" x="479" y="122">좌표계</text>
+
+  <rect class="box" x="594" y="72" width="150" height="76" rx="6"/>
+  <text class="label" x="669" y="102">카메라/센서</text>
+  <text class="label sub" x="669" y="122">좌표계</text>
+
+  <line x1="214" y1="110" x2="174" y2="110" stroke="#3d4550" stroke-width="2" marker-end="url(#arrow)"/>
+  <text class="tx" x="194" y="98">T_image←patient</text>
+
+  <line x1="404" y1="110" x2="364" y2="110" stroke="#3d4550" stroke-width="2" marker-end="url(#arrow)"/>
+  <text class="tx" x="384" y="98">T_patient←tracker</text>
+
+  <line x1="594" y1="110" x2="554" y2="110" stroke="#3d4550" stroke-width="2" marker-end="url(#arrow)"/>
+  <text class="tx" x="574" y="98">T_tracker←sensor</text>
+
+  <text class="label sub" x="380" y="188">화살표: 목적 좌표계 ← 원 좌표계 (강체 변환)</text>
+</svg>
