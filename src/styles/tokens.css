@@ -1,0 +1,60 @@
+/* Design tokens. The source of truth is docs/DESIGN.md. */
+:root {
+  --bg: #f7f8f8;
+  --surface: #ffffff;
+  --ink: #14201f;
+  --ink-2: #5d6b69;
+  --line: #d9dedd;
+  --accent: #0e6b5c;
+  --accent-soft: #e3efec;
+  --signal: #8f4c00;
+  --signal-soft: #f6ead9;
+  --code-bg: #eef1f0;
+  --ax-x: #b8382b;
+  --ax-y: #2c8050;
+  --ax-z: #2b66ad;
+
+  --measure: 42rem;
+  --wide: 68rem;
+  --font-sans: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", Consolas, monospace;
+
+  color-scheme: light;
+}
+
+/* Dark: chosen by the visitor, or by the system when no choice is stored. */
+:root[data-theme="dark"] {
+  --bg: #0f1514;
+  --surface: #151c1b;
+  --ink: #e4e9e7;
+  --ink-2: #9aa8a5;
+  --line: #27302f;
+  --accent: #5fc7b2;
+  --accent-soft: #17302b;
+  --signal: #e0a04a;
+  --signal-soft: #33260f;
+  --code-bg: #1a2221;
+  --ax-x: #e8776b;
+  --ax-y: #63c48d;
+  --ax-z: #74aaea;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1514;
+    --surface: #151c1b;
+    --ink: #e4e9e7;
+    --ink-2: #9aa8a5;
+    --line: #27302f;
+    --accent: #5fc7b2;
+    --accent-soft: #17302b;
+    --signal: #e0a04a;
+    --signal-soft: #33260f;
+    --code-bg: #1a2221;
+    --ax-x: #e8776b;
+    --ax-y: #63c48d;
+    --ax-z: #74aaea;
+    color-scheme: dark;
+  }
+}
