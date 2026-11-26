@@ -9,10 +9,10 @@ timezone: Asia/Seoul
 
 title: Jinmin Kim
 
-tagline: 3D Vision · Spatial AI · Physical AI 학습 노트와 논문 리뷰
+tagline: Surgical Navigation · Spatial AI · 3D Vision · Registration · Robotics
 
 description: >-
-  3D Vision, Spatial AI, Physical AI 분야의 학습 노트와 논문 리뷰를 기록하는 블로그입니다.
+  Surgical Navigation, Spatial AI, 3D Vision, Registration, Robotics 분야의 연구 노트와 논문 리뷰를 기록하는 블로그입니다.
 
 url: "https://rafaam11.github.io"
 
@@ -159,6 +159,8 @@ exclude:
   - README.md
   - LICENSE
   - POSTING.md
+  - AGENTS.md
+  - CLAUDE.md
   - purgecss.js
   - "*.config.js"
   - "package*.json"

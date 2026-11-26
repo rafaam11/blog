@@ -2,6 +2,8 @@
 
 이 저장소는 [Chirpy](https://github.com/cotes2020/jekyll-theme-chirpy) 테마를 사용합니다.
 
+작업 범위와 승인 규칙은 `AGENTS.md`, 글 유형과 문체는 `docs/CONTENT-GUIDE.md`, 발행 절차는 `docs/PUBLISHING.md`를 봅니다.
+
 ## 파일 이름
 
 `_posts/` 아래에 다음 형식으로 파일을 만듭니다.
@@ -35,6 +37,10 @@ mermaid: true
 | `tags` | 소문자 태그 목록 |
 | `math` | `true`이면 MathJax 로드 (수식이 있는 글에만 켜기) |
 | `mermaid` | `true`이면 Mermaid 다이어그램 사용 가능 |
+| `series` | 시리즈 이름 (선택). 시리즈에 속한 글에만 적습니다 |
+| `series_order` | 시리즈 안의 순서 (선택). 1부터 시작합니다 |
+
+`series`와 `series_order`는 기록용입니다. 현재 테마는 이 값을 읽지 않으므로, 시리즈에 글을 추가하면 `_tabs/series.md`의 목록도 직접 고칩니다.
 
 수식: 인라인은 `$$ ... $$`, 블록은 앞뒤 빈 줄을 두고 `$$ ... $$`.
 

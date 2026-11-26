@@ -8,6 +8,9 @@ on:
       - README.md
       - LICENSE
       - POSTING.md
+      - AGENTS.md
+      - CLAUDE.md
+      - "docs/**"
 
   pull_request:
     branches:
@@ -17,6 +20,9 @@ on:
       - README.md
       - LICENSE
       - POSTING.md
+      - AGENTS.md
+      - CLAUDE.md
+      - "docs/**"
 
   workflow_dispatch:
 
