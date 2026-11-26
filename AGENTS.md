@@ -14,12 +14,12 @@
 
 | 항목 | 상태 |
 |---|---|
-| 생성기 | Jekyll + Chirpy 테마(gem). 테마 덮어쓰기 파일 없음 |
-| 콘텐츠 | `_posts/` 글, `_tabs/` 탭 |
+| 생성기 | Astro(정적 출력). 화면은 `docs/DESIGN.md`를 따라 직접 만든 것이다 |
+| 콘텐츠 | `src/content/notes/<slug>/index.md` 글과 그림, `src/pages/` 화면 |
 | 배포 | `main` push 시 `.github/workflows/pages-deploy.yml`이 GitHub Pages로 배포 |
-| 예정 | Astro로 이전(승인 후 별도 브랜치에서 진행). 이전 전까지는 Jekyll 구조를 따른다 |
+| 예정 | Projects와 Research 화면, 영문(`/en/`) 선별 번역. 각각 별도 PR로 진행한다 |
 
-글 작성 형식은 `POSTING.md`를 본다. Astro 이전이 끝나면 이 표와 `POSTING.md`를 함께 고친다.
+글 작성 형식은 `POSTING.md`를 본다. 구조가 바뀌면 이 표와 `POSTING.md`를 함께 고친다.
 
 ## 문서 지도
 
@@ -29,7 +29,7 @@
 | `docs/CONTENT-GUIDE.md` | 콘텐츠 축, 글 유형, 템플릿, 문체 |
 | `docs/PUBLISHING.md` | 초안에서 발행까지의 절차, LinkedIn 운영 |
 | `docs/DESIGN.md` | 디자인 토큰과 컴포넌트 규칙 |
-| `POSTING.md` | 현재 Jekyll 글의 파일명과 front matter |
+| `POSTING.md` | 글 파일 위치와 front matter |
 
 Personal AI Infrastructure 전체의 공통 정책은 Google Drive의 `S_세컨드브레인`에서 관리한다.
 그 문서가 있으면 먼저 따르고, 이 레포에는 블로그에 한정된 규칙만 둔다. 공통 정책을 여기에 복제하지 않는다.
@@ -48,8 +48,8 @@ Personal AI Infrastructure 전체의 공통 정책은 Google Drive의 `S_세컨�
 
 | 대상 | 콘텐츠 에이전트 | 개발 에이전트 |
 |---|---|---|
-| `_posts/`, `assets/img/posts/` | 초안 작성, 승인된 수정 | 읽기 |
-| `_tabs/`, `_config.yml`, 워크플로 | 읽기 | 승인된 수정 |
+| `src/content/notes/` | 초안 작성, 승인된 수정 | 읽기 |
+| 그 밖의 `src/`, `public/`, `scripts/`, 설정 파일, 워크플로 | 읽기 | 승인된 수정 |
 | `docs/`, `AGENTS.md`, `POSTING.md` | 읽기, 개정 제안 | 승인된 수정 |
 | 레포 밖 자료(Deck, LLMWiki, Notion, Drive) | 읽기만. 연동이 구현된 경우에 한함 | 해당 없음 |
 
