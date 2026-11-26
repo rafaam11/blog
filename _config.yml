@@ -159,6 +159,8 @@ exclude:
   - README.md
   - LICENSE
   - POSTING.md
+  - AGENTS.md
+  - CLAUDE.md
   - purgecss.js
   - "*.config.js"
   - "package*.json"
