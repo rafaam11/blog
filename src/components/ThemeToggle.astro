@@ -1,0 +1,31 @@
+---
+// Hidden until the script runs: without JavaScript the theme follows the system setting.
+---
+
+<button class="theme-toggle" type="button" hidden data-theme-toggle></button>
+
+<script is:inline>
+  (function () {
+    var btn = document.querySelector('[data-theme-toggle]');
+    if (!btn) return;
+    var root = document.documentElement;
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    function current() {
+      return root.getAttribute('data-theme') || (mq.matches ? 'dark' : 'light');
+    }
+    function label() {
+      var next = current() === 'dark' ? '라이트' : '다크';
+      btn.textContent = next;
+      btn.setAttribute('aria-label', next + ' 테마로 바꾸기');
+    }
+    btn.addEventListener('click', function () {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      label();
+    });
+    mq.addEventListener('change', label);
+    label();
+    btn.hidden = false;
+  })();
+</script>

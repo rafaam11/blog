@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import FramesDiagram from '../components/FramesDiagram.astro';
+import NoteRow from '../components/NoteRow.astro';
+import { getNotes } from '../lib/notes';
+import { SITE, url } from '../site';
+
+const notes = await getNotes();
+const recent = notes.slice(0, 5);
+
+// Content axes from docs/CONTENT-GUIDE.md, in the order the site introduces them.
+const fields = [
+  { name: 'Surgical Navigation & XR', text: '수술 전 영상을 지도로 두고 추적 장치와 센서를 그 위에 올리는 일' },
+  { name: 'Geometry & Medical Imaging', text: '정합의 근거와 오차를 어떻게 정의하고 측정하는가' },
+  { name: '3D Vision & Spatial AI', text: '공간을 어떻게 표현하고 여러 관측을 한 추정으로 모으는가' },
+  { name: 'Robotics & Physical AI', text: '맞춘 좌표계 위에서 도구와 로봇이 어떻게 움직이는가' },
+];
+---
+
+<Base>
+  <main id="main" class="wrap">
+    <section class="lede">
+      <div>
+        <h1>영상, 센서, 환자, 도구를 하나의 공간에 맞추는 문제를 다룬다</h1>
+        <p class="tagline">{SITE.tagline}</p>
+        <p class="sub">영상과 실제 공간을 맞추고, 광학 추적과 비전 센서를 하나의 좌표계로 잇는 일을 한다.</p>
+      </div>
+      <FramesDiagram />
+    </section>
+
+    <section class="block" aria-labelledby="h-research">
+      <h2 id="h-research">연구 분야</h2>
+      <ul class="rows">
+        {fields.map((f) => (
+          <li><span class="k">{f.name}</span><span class="v">{f.text}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="block" aria-labelledby="h-notes">
+      <h2 id="h-notes">최근 노트</h2>
+      <ul class="rows notes">
+        {recent.map((note) => <NoteRow note={note} all={notes} />)}
+      </ul>
+      <p class="small" style="margin-top:16px"><a href={url('/notes/')}>노트 전체 보기</a></p>
+    </section>
+
+    <section class="block" aria-labelledby="h-about">
+      <h2 id="h-about">소개</h2>
+      <div class="about">
+        <div>
+          <p>의료영상·수술 내비게이션 소프트웨어를 개발하는 연구원이다. DGIST에서 로봇공학 석사를 마쳤다. 지금은 영상 지도와 다중 센서 정합이라는 질문을 따라 3D Vision과 Spatial AI를 공부하고 있다.</p>
+          <p><a href={url('/about/')}>소개 보기</a></p>
+        </div>
+        <ul class="links">
+          {SITE.links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        </ul>
+      </div>
+    </section>
+  </main>
+</Base>

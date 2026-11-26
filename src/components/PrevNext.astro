@@ -1,0 +1,28 @@
+---
+import type { SeriesPart } from '../lib/notes';
+import { url } from '../site';
+
+interface Props {
+  label: string;
+  prev?: SeriesPart;
+  next?: SeriesPart;
+  /** Shown when there is no neighbour on that side. */
+  emptyPrev: string;
+  emptyNext: string;
+}
+
+const { label, prev, next, emptyPrev, emptyNext } = Astro.props;
+---
+
+<nav class="pager" aria-label={label}>
+  {prev?.note ? (
+    <a href={url(`/posts/${prev.note.id}/`)}><span class="lab">이전 글</span>{prev.title}</a>
+  ) : (
+    <span class="muted"><span class="lab">이전 글</span>{prev ? `${prev.title} (준비 중)` : emptyPrev}</span>
+  )}
+  {next?.note ? (
+    <a class="r" href={url(`/posts/${next.note.id}/`)}><span class="lab">다음 글</span>{next.title}</a>
+  ) : (
+    <span class="r muted"><span class="lab">다음 글</span>{next ? `${next.title} (준비 중)` : emptyNext}</span>
+  )}
+</nav>

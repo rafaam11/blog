@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import { buildSeries, getNotes } from '../../lib/notes';
+import { url } from '../../site';
+
+const notes = await getNotes();
+const all = buildSeries(notes);
+---
+
+<Base title="Series" description="하나의 주제를 여러 편으로 나눠 쓰는 시리즈 목록." section="/series/">
+  <main id="main" class="wrap page">
+    <h1>Series</h1>
+    {all.map((s) => (
+      <section aria-labelledby={`s-${s.name}`}>
+        <h2 id={`s-${s.name}`}>{s.name}</h2>
+        {s.intro && <p class="intro">{s.intro}</p>}
+        <ol class="series-list">
+          {s.parts.map((part) =>
+            part.note ? (
+              <li><a href={url(`/posts/${part.note.id}/`)}>{part.title}</a></li>
+            ) : (
+              <li class="soon">{part.title} (준비 중)</li>
+            ),
+          )}
+        </ol>
+      </section>
+    ))}
+  </main>
+</Base>

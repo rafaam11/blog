@@ -1,0 +1,29 @@
+---
+import { isoDate, seriesPosition, tagSlug, type Note } from '../lib/notes';
+import { url } from '../site';
+
+interface Props {
+  note: Note;
+  all: Note[];
+  showTags?: boolean;
+}
+
+const { note, all, showTags = false } = Astro.props;
+const date = isoDate(note.data.date);
+const pos = seriesPosition(note, all);
+---
+
+<li>
+  <time datetime={date}>{date}</time>
+  <span class="k">
+    <a href={url(`/posts/${note.id}/`)}>{note.data.title}</a>
+    {showTags && note.data.tags.length > 0 && (
+      <span class="t">
+        {note.data.tags.map((tag, i) => (
+          <Fragment>{i > 0 && ', '}<a href={url(`/tags/${tagSlug(tag)}/`)}>{tag}</a></Fragment>
+        ))}
+      </span>
+    )}
+  </span>
+  <span class="n">{note.data.type}{pos && `, 시리즈 ${pos.total}편 중 ${pos.index + 1}편`}</span>
+</li>

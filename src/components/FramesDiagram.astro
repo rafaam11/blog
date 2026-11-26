@@ -1,0 +1,20 @@
+---
+// Coordinate frames (pre-op image, patient, tracker, vision sensor) and the rigid transforms between them.
+// Colours come from the design tokens so the figure follows the theme.
+---
+
+<svg class="frames" viewBox="0 0 520 370" role="img" aria-label="수술 전 영상, 환자, 추적기, 카메라·센서 좌표계와 그 사이의 강체 변환">
+  <defs>
+    <marker id="fh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="hd" d="M0 0L10 5L0 10z"></path></marker>
+  </defs>
+  <path class="tf" d="M372 96 C 300 62, 210 66, 138 100" marker-end="url(#fh)"></path>
+  <path class="tf" d="M318 258 C 350 220, 378 176, 394 124" marker-end="url(#fh)"></path>
+  <path class="tf est" d="M128 300 C 180 318, 230 312, 276 290" marker-end="url(#fh)"></path>
+  <text class="T" x="196" y="58">T image←patient</text>
+  <text class="T" x="372" y="204">T patient←tracker</text>
+  <text class="T" x="150" y="338">T tracker←sensor</text>
+  <g transform="translate(104,118)"><line class="x" x2="34"></line><line class="y" y2="-34"></line><line class="z" x2="-20" y2="18"></line><circle class="o" r="3"></circle><text x="-70" y="-52">수술 전 영상</text><text class="s" x="-70" y="-34">CT, CBCT</text></g>
+  <g transform="translate(404,104)"><line class="x" x2="34"></line><line class="y" y2="-34"></line><line class="z" x2="-20" y2="18"></line><circle class="o" r="3"></circle><text x="16" y="-52">환자</text><text class="s" x="16" y="-34">해부 구조</text></g>
+  <g transform="translate(300,280)"><line class="x" x2="34"></line><line class="y" y2="-34"></line><line class="z" x2="-20" y2="18"></line><circle class="o" r="3"></circle><text x="44" y="22">추적기</text><text class="s" x="44" y="40">광학 마커</text></g>
+  <g transform="translate(96,290)"><line class="x" x2="34"></line><line class="y" y2="-34"></line><line class="z" x2="-20" y2="18"></line><circle class="o" r="3"></circle><text x="-70" y="-58">카메라, LiDAR</text><text class="s" x="-70" y="-40">비전 센서</text></g>
+</svg>

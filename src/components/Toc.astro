@@ -1,0 +1,28 @@
+---
+interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+  /** "side": sticky column on wide screens. "inline": collapsible box above the body on narrow screens. */
+  variant: 'side' | 'inline';
+}
+
+const { headings, variant } = Astro.props;
+const items = headings.filter((h) => h.depth === 2);
+---
+
+{items.length > 0 && variant === 'side' && (
+  <aside class="toc" aria-label="목차">
+    <p>목차</p>
+    <ol>
+      {items.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}
+    </ol>
+  </aside>
+)}
+
+{items.length > 0 && variant === 'inline' && (
+  <details class="toc-m">
+    <summary>목차</summary>
+    <ol>
+      {items.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}
+    </ol>
+  </details>
+)}

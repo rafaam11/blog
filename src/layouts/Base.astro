@@ -1,0 +1,89 @@
+---
+import '@fontsource/ibm-plex-sans-kr/400.css';
+import '@fontsource/ibm-plex-sans-kr/500.css';
+import '@fontsource/ibm-plex-sans-kr/600.css';
+import '@fontsource/ibm-plex-sans-kr/700.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '../styles/tokens.css';
+import '../styles/global.css';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import { MENU, SITE, url } from '../site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Menu path this page belongs to, e.g. "/notes/". */
+  section?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+}
+
+const { title, description = SITE.description, section, ogType = 'website', noindex = false } = Astro.props;
+const fullTitle = title ? `${title} | ${SITE.title}` : SITE.title;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang={SITE.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={SITE.author} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
+    <link rel="alternate" type="application/rss+xml" title={SITE.title} href={url('/feed.xml')} />
+    <meta property="og:site_name" content={SITE.title} />
+    <meta property="og:title" content={title ?? SITE.title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={SITE.locale} />
+    <script is:inline>
+      // Apply the stored theme before first paint. Without a stored choice the CSS follows the system setting.
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+        // The previous (Jekyll + Chirpy) site registered a service worker that cached pages.
+        // Remove it and its caches so returning visitors get the current site.
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(function (rs) {
+            rs.forEach(function (r) { r.unregister(); });
+          }).catch(function () {});
+          if (window.caches) {
+            caches.keys().then(function (ks) { ks.forEach(function (k) { caches.delete(k); }); }).catch(function () {});
+          }
+        }
+      })();
+    </script>
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip" href="#main">본문으로 건너뛰기</a>
+    <header class="top">
+      <div class="wrap">
+        <a class="name" href={url('/')}>{SITE.title}</a>
+        <nav aria-label="주 메뉴">
+          {MENU.map((m) => (
+            <a href={url(m.path)} aria-current={section === m.path ? 'page' : undefined}>{m.label}</a>
+          ))}
+        </nav>
+        <ThemeToggle />
+      </div>
+    </header>
+    <slot />
+    <footer class="foot">
+      <div class="wrap">
+        <span>{SITE.author}</span>
+        <ul>
+          {SITE.links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+          <li><a href={url('/feed.xml')}>RSS</a></li>
+        </ul>
+      </div>
+    </footer>
+  </body>
+</html>
