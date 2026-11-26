@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import NoteRow from '../../components/NoteRow.astro';
+import { getNotes, tagSlug, type Note } from '../../lib/notes';
+import { url } from '../../site';
+
+export async function getStaticPaths() {
+  const notes = await getNotes();
+  const bySlug = new Map<string, { name: string; tagged: Note[] }>();
+  for (const note of notes) {
+    for (const tag of note.data.tags) {
+      const slug = tagSlug(tag);
+      const entry = bySlug.get(slug) ?? { name: tag, tagged: [] };
+      entry.tagged.push(note);
+      bySlug.set(slug, entry);
+    }
+  }
+  return [...bySlug].map(([slug, { name, tagged }]) => ({
+    params: { tag: slug },
+    props: { name, tagged, all: notes },
+  }));
+}
+
+interface Props {
+  name: string;
+  tagged: Note[];
+  all: Note[];
+}
+
+const { name, tagged, all } = Astro.props;
+---
+
+<Base title={`태그: ${name}`} description={`${name} 태그가 붙은 글 목록.`} section="/notes/">
+  <main id="main" class="wrap page">
+    <p class="small muted"><a href={url('/tags/')}>Tags</a></p>
+    <h1>{name}</h1>
+    <p class="intro">이 태그가 붙은 글 {tagged.length}편.</p>
+    <ul class="rows notes">
+      {tagged.map((note) => <NoteRow note={note} all={all} />)}
+    </ul>
+  </main>
+</Base>

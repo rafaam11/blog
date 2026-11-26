@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getNotes, tagSlug } from '../../lib/notes';
+import { url } from '../../site';
+
+const notes = await getNotes();
+const counts = new Map<string, number>();
+for (const note of notes) for (const tag of note.data.tags) counts.set(tag, (counts.get(tag) ?? 0) + 1);
+const tags = [...counts].sort((a, b) => a[0].localeCompare(b[0], 'ko'));
+---
+
+<Base title="Tags" description="태그별 글 목록." section="/notes/">
+  <main id="main" class="wrap page">
+    <h1>Tags</h1>
+    <p class="intro">글에 붙인 태그와 태그별 글 수다.</p>
+    <ul class="rows tags">
+      {tags.map(([tag, count]) => (
+        <li><span class="k"><a href={url(`/tags/${tagSlug(tag)}/`)}>{tag}</a></span><span class="n">{count}편</span></li>
+      ))}
+    </ul>
+  </main>
+</Base>

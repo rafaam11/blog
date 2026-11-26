@@ -1,0 +1,10 @@
+---
+// Category pages the previous site published. Categories were replaced by note types.
+import Redirect from '../../components/Redirect.astro';
+
+export function getStaticPaths() {
+  return [{ params: { name: '학습기록' } }];
+}
+---
+
+<Redirect to="/notes/" />

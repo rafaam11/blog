@@ -1,0 +1,27 @@
+---
+import type { SeriesView } from '../lib/notes';
+import { url } from '../site';
+
+interface Props {
+  view: SeriesView;
+  /** Index of the note being read. */
+  index: number;
+}
+
+const { view, index } = Astro.props;
+---
+
+<details class="series" open>
+  <summary>시리즈 「{view.name}」 {view.parts.length}편 중 {index + 1}편</summary>
+  <ol>
+    {view.parts.map((part, i) =>
+      i === index ? (
+        <li class="now" aria-current="page">{part.title}</li>
+      ) : part.note ? (
+        <li><a href={url(`/posts/${part.note.id}/`)}>{part.title}</a></li>
+      ) : (
+        <li class="soon">{part.title} (준비 중)</li>
+      ),
+    )}
+  </ol>
+</details>

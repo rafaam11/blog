@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import NoteRow from '../../components/NoteRow.astro';
+import { getNotes } from '../../lib/notes';
+import { url } from '../../site';
+
+const notes = await getNotes();
+---
+
+<Base title="Notes" description="연구 노트, 논문 리뷰, 구현 기록의 전체 목록." section="/notes/">
+  <main id="main" class="wrap page">
+    <h1>Notes</h1>
+    <p class="intro">연구 노트, 논문 리뷰, 구현 기록을 날짜순으로 모았다. 주제별로는 <a href={url('/tags/')}>태그</a>와 <a href={url('/series/')}>시리즈</a>에서 찾을 수 있다.</p>
+    {notes.length > 0 ? (
+      <ul class="rows notes">
+        {notes.map((note) => <NoteRow note={note} all={notes} showTags />)}
+      </ul>
+    ) : (
+      <p class="muted">아직 발행한 글이 없다.</p>
+    )}
+  </main>
+</Base>

@@ -7,7 +7,7 @@
 실제 공간과 디지털 공간을 잇는 문제를 의료와 로보틱스에서 다루는 연구자의 기록이다.
 중심 질문은 정합이다. 영상, 센서, 환자, 도구가 각자의 좌표계에 있을 때 이들을 하나의 공간으로 묶고, 대상이 움직여도 그 관계를 유지하는 방법을 다룬다.
 
-사이트 태그라인은 `Surgical Navigation · Spatial AI · 3D Vision · Registration · Robotics`다. `_config.yml`의 `tagline`과 같게 유지한다.
+사이트 태그라인은 `Surgical Navigation · Spatial AI · 3D Vision · Registration · Robotics`다. `src/site.ts`의 `tagline`과 같게 유지한다.
 
 독자는 세 부류로 본다.
 

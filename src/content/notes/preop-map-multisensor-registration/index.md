@@ -1,10 +1,10 @@
 ---
 title: 수술 전 영상 지도와 다중 센서 정합
 date: 2026-11-24 09:00:00 +0900
-categories: [학습기록]
+type: Research Note
 tags: [정합, 수술내비게이션, 3D-Vision, Spatial-AI, Physical-AI]
 series: 수술 내비게이션
-series_order: 1
+seriesOrder: 1
 math: false
 ---
 
@@ -16,7 +16,7 @@ math: false
 
 문제는 이 관측들을 같은 지도 위에 올리는 일이다. 좌표계를 맞춘다는 것은 각 센서의 관측을 지도 좌표로 변환하는 일이다. 한 센서만 영상에 맞추는 것으로는 부족하다. 서로 다른 센서의 관측을 하나의 좌표계로 묶어야 하고, 묶인 뒤에는 대상이 움직여도 그 관계가 유지되어야 한다. 변환이 정해져도 센서마다 오차의 성질과 갱신 주기는 다를 수 있다.
 
-![수술 전 영상, 환자 해부, 추적기, 카메라·센서 좌표계 사이의 강체 변환](/assets/img/posts/preop-map-multisensor-registration/coordinate-transforms.svg)
+![수술 전 영상, 환자 해부, 추적기, 카메라·센서 좌표계 사이의 강체 변환](./coordinate-transforms.svg)
 
 *그림. 수술 전 영상(CT), 환자(해부), 추적기, 카메라/센서 좌표계를 연결하는 변환 관계.*
 
@@ -32,7 +32,7 @@ math: false
 
 점 기반의 강체 정합에서도 오차의 종류를 구분해 볼 필요가 있다. 맞춘 표지점 사이의 잔차(FRE)는 관심 위치의 오차(TRE)와 같지 않다. TRE는 표지점 수와 배치에 따라 달라지며, FRE가 작다고 해서 TRE가 작다고 보기 어렵다[3]. 강체 가정에서조차 이런 구분이 필요하다.
 
-![표지점 잔차 오차(FRE)와 표지점에서 떨어진 목표점의 관심점 오차(TRE) 비교](/assets/img/posts/preop-map-multisensor-registration/fre-vs-tre.svg)
+![표지점 잔차 오차(FRE)와 표지점에서 떨어진 목표점의 관심점 오차(TRE) 비교](./fre-vs-tre.svg)
 
 *그림. 표지점 근처의 FRE와 표지점 밖 관심 위치의 TRE는 같지 않다. (Fitzpatrick, West & Maurer, 1998[3])*
 
